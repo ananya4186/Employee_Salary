@@ -1,12 +1,8 @@
-def calculate_salary():
+import sys
+
+def calculate_salary(name, emp_id, dept, basic_salary):
     print("==== Employee Salary Processing ====")
 
-    name = input("Enter employee name: ")
-    emp_id = input("Enter employee ID: ")
-    dept = input("Enter department: ")
-    basic_salary = float(input("Enter basic salary: "))
-
-    # Salary calculation logic
     hra = basic_salary * 0.20
     da = basic_salary * 0.10
     gross_salary = basic_salary + hra + da
@@ -29,6 +25,19 @@ def calculate_salary():
     print(f"Net Salary    : {net_salary}")
 
 
-# main execution
 if __name__ == "__main__":
-    calculate_salary()
+    # Jenkins / Docker (non-interactive)
+    if len(sys.argv) == 5:
+        name = sys.argv[1]
+        emp_id = sys.argv[2]
+        dept = sys.argv[3]
+        salary = float(sys.argv[4])
+    else:
+        # Local / interactive
+        print("==== Employee Salary Processing ====")
+        name = input("Enter employee name: ")
+        emp_id = input("Enter employee ID: ")
+        dept = input("Enter department: ")
+        salary = float(input("Enter basic salary: "))
+
+    calculate_salary(name, emp_id, dept, salary)
